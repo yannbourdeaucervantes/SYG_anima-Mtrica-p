@@ -1,0 +1,816 @@
+
+/*body*/
+
+body {
+    height: 100%; /* Asegura que ocupen toda la altura del viewport */
+    margin: 0; /* Elimina márgenes */
+    display: flex; /* Activa Flexbox */
+    flex-direction: column; /* Coloca los elementos en columna */
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box; /* Incluye padding y border en el cálculo del tamaño */
+    overflow-x: hidden;
+}
+
+canvas {
+    width: 100vw; /* Ancho completo del viewport */
+    height: 100vh; /* Alto completo del viewport */
+    object-fit: cover;
+    position: fixed; /* Fija el canvas en el viewport */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Asegura que el canvas esté exactamente centrado */
+    display: block;
+    margin: 0;
+    z-index: 1;
+    transition: opacity 0.8s ease; /* Transición suave para la opacidad */
+}
+
+#canvas.fade-out {
+    opacity: 0; /* Hace que el canvas se desvanezca */
+}
+
+
+
+/*NAVBAR-----------------------------------------------------------------------------------0*/
+
+/* Taskbar fija con tareas alineadas a la derecha */
+#menu {
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 10px;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho del viewport */
+    padding: 10px 20px; /* Espaciado interno */
+    z-index: 100; /* Asegura que esté por encima de otros elementos */
+    display: flex; /* Usa flexbox para alinear los elementos */
+    justify-content: flex-end; /* Alinea los elementos a la derecha */
+    font-family: "Playfair Display", serif;
+}
+
+#menu ul {
+    list-style: none; /* Elimina los puntos de la lista */
+    display: flex; /* Alinea los elementos horizontalmente */
+    margin: 0;
+    padding: 0;
+    margin-right: 3%; /* Separa el contenedor azul un 20% del borde derecho */
+}
+
+#menu ul li {
+    margin-left: 10px; /* Espaciado entre las tareas */
+}
+
+#menu ul li a:not(#contact-button) {
+    font-size: .8em;
+    font-family: "Montserrat", sans-serif;
+    color: rgb(255, 255, 255); /* Color del texto */
+    text-decoration: none; /* Elimina el subrayado */
+    font-weight: 400; /* Texto normal */
+    padding: 4px 15px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave al pasar el mouse */
+}
+
+#menu ul li a:not(#contact-button):hover {
+    color:#000;
+    transition: .5s;
+}
+
+/* NAVBAR VERSIÓN CLARA (sobre fondo blanco) */
+#menu.light {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: black;
+}
+
+#menu.light ul li a:not(#contact-button) {
+    color: black;
+}
+
+#menu.light ul li a:not(#contact-button):hover {
+    color: rgb(80, 80, 80);
+}
+
+/*lineas de la barra de tareas*/
+
+#menu ul li {
+    margin-left: 10px; /* Espaciado entre las tareas */
+    position: relative; /* Necesario para posicionar la línea */
+}
+
+#menu ul li:not(:last-child)::after {
+    content: ""; /* Crea una línea */
+    position: absolute;
+    top: 0;
+    right: -5px; /* Ajusta la posición de la línea */
+    height: 100%; /* La línea ocupa toda la altura del elemento */
+    width: 1px; /* Grosor de la línea */
+    background-color: rgba(255, 255, 255, 0.097); /* Color de la línea */
+}
+
+/*Contacto*/
+
+#contact-button {
+    font-family: "Montserrat", sans-serif;
+    color: rgb(255, 255, 255); /* Color del texto */
+    text-decoration: none; /* Elimina el subrayado */
+    font-weight: bolder; /* Texto en negrita */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 100px; /* Aumenta el valor para hacerlo más redondeado */
+    background-color: rgb(0, 0, 0); /* Fondo del botón */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el tamaño total */
+}
+
+#contact-button:hover {
+    color:#000;
+    background-color: rgb(73, 223, 73); /* Cambia el fondo al pasar el mouse */
+    transition: .5s;
+}
+
+
+/*INTRO/*-----------------------------------------------------------------------------------*/
+
+
+
+#SEC_Intro h1 {
+    font-size: 5rem;
+    color: rgb(255, 255, 255);
+    font-family: "Outfit", sans-serif;
+}
+
+#SEC_Intro p {
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+    font-family: "Montserrat", sans-serif;
+}
+
+
+
+
+/*SECTION-----------------------------------------------------------------------*/
+
+
+
+/*TITULO*/
+
+#DIV_Titulo {
+    position:absolute; /* Para que se quede en la pantalla mientras haces scroll */
+    top: 13vh;
+    left: 5vw; /* El lado izquierdo del div se fija al 5% del viewport */
+    right: 50%; /* El lado derecho se fija al 50% del viewport */
+    padding: 2rem;
+    border-radius: 10px;
+    z-index: 10; /* Para que se muestre por encima del canvas */
+    width: 50vw; /* El ancho inicial del div es el espacio entre el 5% y el 50% */
+    color:rgb(0, 0, 0);
+    
+    
+}
+
+#DIV_Titulo h1 {
+    margin-top: 0rem; /* Reduce el margen superior del texto */
+    margin-bottom: 0rem; /* Reduce el margen inferior del texto */
+    font-size: 4rem; /* Ajusta el tamaño de la fuente si es necesario */
+    line-height: 1; /* Ajusta el espaciado entre líneas */
+}
+
+#DIV_Titulo p {
+    margin-top: .5rem; /* Reduce el margen superior del texto */
+    font-size: 1rem; /* Ajusta el tamaño de la fuente si es necesario */
+    line-height: 0; /* Ajusta el espaciado entre líneas */
+}
+
+/*INfORMACION*/
+
+#info-1 h1,#info-2 h1,#info-3 h1 {
+    font-family: initial;
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+}
+
+#info-1 p,#info-2 p,#info-3 p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+}
+
+
+
+
+/*DIVS--------------------------------------------------------------------------------*/
+
+
+#info-1 h1, #info-2 h1, #info-3 h1, #info-3 h1, #info-4 h1 {
+    font-size: 3rem;
+}
+
+#info-1 p, #info-2 p, #info-3 p, #info-3 p, #info-4 p {
+    font-size: 1rem;
+}
+
+
+/* info-1 */
+#info-1 {
+    position: fixed; /* Para que se quede en la pantalla mientras haces scroll */
+    top: 27vh;
+    left: 8%; /* Ancla el lado izquierdo al 50% del ancho de la pantalla */
+    right: 55%; /* Ancla el lado derecho al 30% del ancho de la pantalla */
+    padding: 1rem;
+    border-radius: 10px;
+    z-index: 1; /* Para que se muestre por encima del canvas */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Transición suave */
+    opacity: 0; /* Inicialmente el div está invisible */
+    visibility: hidden; /* Evita que ocupe espacio cuando no es visible */
+    color: white;
+    text-align: justify; /* Justifica el texto */
+    display: flex; /* Activa Flexbox */
+    flex-direction: row; /* Coloca los elementos en fila */
+    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+    gap: 1rem; /* Espaciado entre el h1 y el p */
+}
+
+#info-1 h1 {
+    margin: 0; /* Elimina márgenes */
+    line-height: 1.2; /* Ajusta el espaciado entre líneas */
+    white-space: nowrap; /* Evita que el título se divida en varias líneas */
+}
+
+#info-1 p {
+    margin: 0; /* Elimina márgenes */
+    line-height: 1; /* Ajusta el espaciado entre líneas */
+    flex: 1; /* Permite que el párrafo ocupe el espacio restante */
+}
+
+/* info-2 */
+#info-2 {
+    position: fixed; /* Para que se quede en la pantalla mientras haces scroll */
+    top: 11vh;
+    left: 25%; /* Ancla el lado izquierdo al 50% del ancho de la pantalla */
+    right: 20%; /* Ancla el lado derecho al 30% del ancho de la pantalla */
+    padding: 1rem;
+    border-radius: 10px;
+    z-index: 1; /* Para que se muestre por encima del canvas */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Transición suave */
+    opacity: 0; /* Inicialmente el div está invisible */
+    visibility: hidden; /* Evita que ocupe espacio cuando no es visible */
+    color: white;
+    text-align: justify; /* Justifica el texto */
+    display: flex; /* Activa Flexbox */
+    flex-direction: row; /* Coloca los elementos en fila */
+    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+    gap: 1rem; /* Espaciado entre el h1 y el p */
+}
+
+#info-2 h1 {
+    margin: 0; /* Elimina márgenes */
+    line-height: 1.2; /* Ajusta el espaciado entre líneas */
+    white-space: nowrap; /* Evita que el título se divida en varias líneas */
+}
+
+#info-2 p {
+    margin: 0; /* Elimina márgenes */
+    line-height: 1; /* Ajusta el espaciado entre líneas */
+    flex: 1; /* Permite que el párrafo ocupe el espacio restante */
+}
+
+/* info-3 */
+#info-3 {
+    position: fixed; /* Para que se quede en la pantalla mientras haces scroll */
+    top: 20vh;
+    left: 55%; /* Ajusta el margen izquierdo */
+    right: 8%; /* Ajusta el margen derecho */
+    padding: 1rem; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    z-index: 10; /* Para que se muestre por encima del canvas */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Transición suave */
+    opacity: 0; /* Inicialmente el div está invisible */
+    visibility: hidden; /* Evita que ocupe espacio cuando no es visible */
+    color: rgb(255, 255, 255);
+    text-align: justify; /* Justifica el texto */
+    display: flex; /* Activa Flexbox */
+    flex-direction: row; /* Coloca los elementos en fila */
+    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+    gap: 1rem; /* Espaciado entre el h1 y el p */
+}
+
+#info-3 h1 {
+    margin: 0; /* Elimina márgenes */
+    line-height: 1.2; /* Ajusta el espaciado entre líneas */
+    white-space: nowrap; /* Evita que el título se divida en varias líneas */
+}
+
+#info-3 p {
+    margin: 0; /* Elimina márgenes */
+    line-height: 1; /* Ajusta el espaciado entre líneas */
+    flex: 1; /* Permite que el párrafo ocupe el espacio restante */
+}
+
+
+/* fondos------------------------------------------------------------------------------------------- */
+
+
+
+#Fondo-Transicion-Fotos {
+    background-color: rgb(255, 255, 255); /* Color de fondo */
+    position: relative; /* Posición relativa */
+    z-index: 2; /* Asegura que esté por encima de otros elementos */
+    width: 100vw; /* Ocupa todo el ancho del viewport */
+    height: 10vh; /* Define una altura fija */
+    margin-top: 1200vh; /* Desplaza el div hacia abajo 1000vh */
+    left: 0; /* Asegura que comience desde el borde izquierdo */
+    padding: 0; /* Elimina cualquier relleno */
+    opacity: .4 ;
+}
+
+
+#Fondo-Fotos {
+    background-color: rgba(255, 255, 255, 0.404); /* Fondo rojo */
+    position: relative; /* Posición relativa */
+    z-index: 2; /* Asegura que esté por encima de otros elementos */
+    width: 100vw; /* Ocupa todo el ancho del viewport */
+    height: 550vh; /* Define una altura fija */
+    display: flex; /* Usa Flexbox para alinear los elementos */
+    justify-content: space-evenly; /* Espacia los elementos uniformemente */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding: 20px; /* Espaciado interno */
+}
+
+#Fondo-explosion {
+    background-color: rgb(255, 255, 255); /* Fondo rojo */
+    position: relative; /* Posición relativa */
+    z-index: 2; /* Asegura que esté por encima de otros elementos */
+    width: 100vw; /* Ocupa todo el ancho del viewport */
+    height: 90vh; /* Define una altura fija */
+    display: flex; /* Usa Flexbox para alinear los elementos */
+    justify-content: space-evenly; /* Espacia los elementos uniformemente */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding: 20px; /* Espaciado interno */
+}
+
+/*Espacios---------------------------------------------------------------------------------------------------*/
+
+
+#DIV_espacio-1 {
+    position: fixed; /* Para que se quede en la pantalla mientras haces scroll */
+    top: 20vh;
+    left: 5%; /* Ajusta el margen izquierdo */
+    right: 60%; /* Ajusta el margen derecho */
+    padding: 1rem; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    z-index: 10; /* Para que se muestre por encima del canvas */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Transición suave */
+    opacity: 0; /* Inicialmente el div está invisible */
+    visibility: hidden; /* Evita que ocupe espacio cuando no es visible */
+    color: rgb(255, 255, 255);
+    text-align: justify; /* Justifica el texto */
+    
+}
+
+#DIV_espacio-1::after {
+    content: ""; /* Crea el pseudo-elemento */
+    position: absolute; /* Posiciona la línea relativa al div */
+    top: 0; /* Parte inferior del div */
+    left: 0; /* Parte izquierda del div */
+    width: 2px; /* Grosor de la línea */
+    height: calc(var(--line-length, 10vh)); /* Longitud de la línea configurable */
+    background-color: rgba(255, 255, 255, 0.267); /* Color de la línea */
+    transform-origin: bottom right; /* Punto de inicio de la rotación */
+    transform: rotate(calc(var(--line-angle, 180deg))); /* Ángulo configurable */
+    z-index: 5; /* Asegura que esté por encima de otros elementos */
+}
+
+#DIV_espacio-2 {
+    position: fixed; /* Para que se quede en la pantalla mientras haces scroll */
+    top: 10vh;
+    left: 60%; /* Ajusta el margen izquierdo */
+    right: 5%; /* Ajusta el margen derecho */
+    padding: 1rem; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    z-index: 10; /* Para que se muestre por encima del canvas */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Transición suave */
+    opacity: 0; /* Inicialmente el div está invisible */
+    visibility: hidden; /* Evita que ocupe espacio cuando no es visible */
+    color: rgb(255, 255, 255);
+    text-align: justify; /* Justifica el texto */
+}
+
+#DIV_espacio-2::after {
+    content: ""; /* Crea el pseudo-elemento */
+    position: absolute; /* Posiciona la línea relativa al div */
+    top: 0; /* Parte inferior del div */
+    right: 0; /* Parte izquierda del div */
+    width: 2px; /* Grosor de la línea */
+    height: calc(var(--line-length, 10vh)); /* Longitud de la línea configurable */
+    background-color: rgba(255, 255, 255, 0.29); /* Color de la línea */
+    transform-origin: bottom left; /* Punto de inicio de la rotación */
+    transform: rotate(calc(var(--line-angle, 180deg))); /* Ángulo configurable */
+    z-index: 5; /* Asegura que esté por encima de otros elementos */
+}
+
+/*seccion expo--------------------------------------------------------------------*/
+
+#Fondo-expo {
+    background-color: rgba(249, 249, 249, 0);
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 110vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+    margin-top: 1200vh;
+  
+    opacity: 0; /* Inicialmente el div está invisible */
+    filter: blur(10px);
+    transform: translateY(50px);
+    transition: opacity 2s ease, transform 3s ease, filter 2s ease;
+  }
+  
+  #Fondo-expo.visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+  
+
+#titulo {
+    position: absolute; /* Posiciona el título dentro del contenedor relativo */
+    top: 2vh; /* Ajusta la posición vertical del título */
+    left: 50%; /* Centra el título horizontalmente */
+    transform: translateX(-50%); /* Ajusta el centro del título */
+    width: 200px; /* El ancho se ajusta al contenido */
+    text-align: center; /* Centra el texto horizontalmente */
+    font-size: 4.5rem; /* Tamaño del texto */
+    color: rgb(0, 0, 0); /* Color del texto */
+    font-family: "Playfair Display", serif;
+    font-weight: 200; /* Reduce el grosor de la letra */
+    z-index: 10; /* Asegura que el título esté por encima de los demás elementos */
+    pointer-events: none; /* Evita que el título interfiera con eventos de clic */
+}
+
+#imgintro {
+    left: 0%;
+    width: 100%; /* El div azul ocupa el 35% del espacio disponible */
+    height: 75vh; /* Define la altura del div */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    border-radius: 0px; /* Bordes redondeados */
+    color: white; /* Color del texto */
+    filter: grayscale(100%) contrast(150%); /* Aplica un filtro para poner la imagen en blanco y negro y ajustar el contraste */
+}
+
+#imgintro img {
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    height: 100%; /* La imagen ocupa toda la altura del contenedor */
+    object-fit: cover; /* Ajusta la imagen para llenar el contenedor */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+    margin-right: 2vh;
+}
+
+#right-div-1, #right-div-2 {
+    width: 32.5%; /* Cada div ocupa la mitad del espacio sobrante */
+    height: 30vh; /* Define la altura del div */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    flex-direction: column; /* Coloca los elementos en columna */
+    justify-content: flex-start; /* Alinea el contenido al inicio verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    border-radius: 10px; /* Bordes redondeados */
+    color: rgb(0, 0, 0); /* Color del texto */
+    text-align: justify; /* Justifica el texto */
+    margin-top: 40vh; /* Baja los divs rojos en relación al div azul */
+    letter-spacing: 0px; /* Reduce el espacio entre letras */
+    margin-right: 2vh;
+    margin-left: 2vh;
+    padding-top: 0.5rem; /* Reduce el espacio superior para ajustar el título */
+}
+
+#right-div-1{
+    margin-bottom: 8rem; /* Ajusta el margen inferior del título */
+}
+
+
+/*parte dos*/
+
+
+#Fondo-expo2 {
+    background-color: rgba(249, 249, 249, 0);
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 110vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+  
+    opacity: 0; /* Inicialmente el div está invisible */
+    filter: blur(10px);
+    transform: translateY(50px);
+    transition: opacity 2s ease, transform 3s ease, filter 2s ease;
+  }
+  
+  #Fondo-expo2.visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+
+/*descripciones fondo expo 1*/
+
+  #right-div-1_2 {
+    position: absolute; /* Posiciona el div de forma absoluta */
+    top: 5vh; /* Alinea el div en la parte superior del contenedor */
+    left: 30vw;
+    right: 45vw; /* Alinea el div al lado derecho del contenedor */
+    height: auto; /* Ajusta la altura automáticamente */
+    margin-bottom: 8rem; /* Ajusta el margen inferior del título */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    flex-direction: column; /* Coloca los elementos en columna */
+    justify-content: flex-start; /* Alinea el contenido al inicio verticalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio horizontalmente */
+    padding: 1rem; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    color: rgb(0, 0, 0); /* Color del texto */
+    text-align: justify; /* Justifica el texto */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+}
+  /*imageintro1*/
+#imgintro1 {
+    margin-top: 5vh;
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    top: 0; /* Alinea la imagen en la parte superior del div */
+    left: 3vw; /* Alinea la imagen a la izquierda del div */
+    right: 69vw;
+    height: 25vh; /* Define la altura del div */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    justify-content: flex-start; /* Alinea el contenido al inicio horizontalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    border-radius: 0px; /* Bordes redondeados */
+    color: white; /* Color del texto */
+    filter: grayscale(100%) contrast(150%); /* Aplica un filtro para poner la imagen en blanco y negro y ajustar el contraste */
+}
+
+#imgintro1 img {
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    height: 100%; /* La imagen ocupa toda la altura del contenedor */
+    object-fit: cover; /* Ajusta la imagen para llenar el contenedor */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+    margin-right: 2vh;
+}
+
+
+  /*imgintro2*/
+#imgintro2 {
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    top: 35vh; /* Alinea la imagen en la parte superior del div */
+    left: 3vw; /* Alinea la imagen a la izquierda del div */
+    right: 77vw;
+    height: 40vh; /* Define la altura del div */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    justify-content: flex-start; /* Alinea el contenido al inicio horizontalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    border-radius: 0px; /* Bordes redondeados */
+    color: white; /* Color del texto */
+    filter: grayscale(100%) contrast(150%); /* Aplica un filtro para poner la imagen en blanco y negro y ajustar el contraste */
+}
+
+#imgintro2 img {
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    height: 100%; /* La imagen ocupa toda la altura del contenedor */
+    object-fit: cover; /* Ajusta la imagen para llenar el contenedor */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+    margin-right: 2vh;
+}
+
+/*imageintro3*/
+
+#imgintro3 {
+    margin-top: 3vh;
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    top: 30vh; /* Alinea la imagen en la parte superior del div */
+    left: 55vw; /* Alinea la imagen a la izquierda del div */
+    right: 27vw;
+    height: 27vh; /* Define la altura del div */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    justify-content: flex-start; /* Alinea el contenido al inicio horizontalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    border-radius: 0px; /* Bordes redondeados */
+    color: white; /* Color del texto */
+    filter: grayscale(100%) contrast(150%); /* Aplica un filtro para poner la imagen en blanco y negro y ajustar el contraste */
+}
+
+#imgintro3 img {
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    height: 100%; /* La imagen ocupa toda la altura del contenedor */
+    object-fit: cover; /* Ajusta la imagen para llenar el contenedor */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+    margin-right: 2vh;
+}
+
+/*imageintro4*/
+
+#imgintro4 {
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    top: 62vh; /* Alinea la imagen en la parte superior del div */
+    left: 55vw; /* Alinea la imagen a la izquierda del div */
+    right: 27vw;
+    height: 27vh; /* Define la altura del div */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    justify-content: flex-start; /* Alinea el contenido al inicio horizontalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    border-radius: 0px; /* Bordes redondeados */
+    color: white; /* Color del texto */
+    filter: grayscale(100%) contrast(150%); /* Aplica un filtro para poner la imagen en blanco y negro y ajustar el contraste */
+}
+
+#imgintro4 img {
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    height: 100%; /* La imagen ocupa toda la altura del contenedor */
+    object-fit: cover; /* Ajusta la imagen para llenar el contenedor */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+    margin-right: 2vh;
+}
+
+
+/*Descripciones*/
+
+#divFE2_1,#divFE2_2,#divFE2_3,#divFE2_3{
+    text-align: justify; /* Justifica el texto */
+}
+
+#divFE2_1 {
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    top: 17vh; /* Alinea la imagen en la parte superior del div */
+    left: 30.6vw; /* Alinea la imagen a la izquierda del div */
+    right: 40vw;
+    height: 35vh; /* Define la altura del div */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    justify-content: flex-start; /* Alinea el contenido al inicio horizontalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    border-radius: 0px; /* Bordes redondeados */
+    color: rgb(0, 0, 0); /* Color del texto */
+    filter: grayscale(100%) contrast(150%); /* Aplica un filtro para poner la imagen en blanco y negro y ajustar el contraste */
+}
+
+#divFE2_2 {
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    top: 73.88vh; /* Alinea la imagen en la parte superior del div */
+    left: 3vw; /* Alinea la imagen a la izquierda del div */
+    right: 77vw;
+    height: 35vh; /* Define la altura del div */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    justify-content: flex-start; /* Alinea el contenido al inicio horizontalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    border-radius: 0px; /* Bordes redondeados */
+    color: rgb(0, 0, 0); /* Color del texto */
+    filter: grayscale(100%) contrast(150%); /* Aplica un filtro para poner la imagen en blanco y negro y ajustar el contraste */
+}
+
+#divFE2Tit_1 {
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    top: 25vh; /* Alinea la imagen en la parte superior del div */
+    left: 55vw; /* Alinea la imagen a la izquierda del div */
+    height: 35vh; /* Define la altura del div */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    justify-content: flex-start; /* Alinea el contenido al inicio horizontalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    border-radius: 0px; /* Bordes redondeados */
+    color: rgb(0, 0, 0); /* Color del texto */
+    filter: grayscale(100%) contrast(150%); /* Aplica un filtro para poner la imagen en blanco y negro y ajustar el contraste */
+}
+
+#divFE2_3 {
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    top: 60vh; /* Alinea la imagen en la parte superior del div */
+    left: 74vw; /* Alinea la imagen a la izquierda del div */
+    right: 8vw;
+    height: 35vh; /* Define la altura del div */
+    display: flex; /* Activa Flexbox para alinear el contenido */
+    justify-content: flex-start; /* Alinea el contenido al inicio horizontalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    border-radius: 0px; /* Bordes redondeados */
+    color: rgb(0, 0, 0); /* Color del texto */
+    filter: grayscale(100%) contrast(150%); /* Aplica un filtro para poner la imagen en blanco y negro y ajustar el contraste */
+}
+
+
+
+/*Seccion animacion explotada----------------------------*/
+
+
+#explosion-image {
+    max-width: 100%; /* Ajusta el ancho máximo al 100% del contenedor */
+    max-height: 100%; /* Ajusta la altura máxima al 100% del contenedor */
+    object-fit: contain; /* Mantiene la proporción de la imagen */
+}
+
+/*Footer---------------------------------------------------------------------------*/
+#footer {
+    background-color: white;
+    color: #555;
+    padding: 4rem 2rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    border-top: 1px solid #ddd;
+}
+
+#footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.footer-section {
+    min-width: 100px;
+}
+
+.footer-title {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #555;
+}
+
+.plus {
+    font-weight: normal;
+    margin-left: 5px;
+    font-size: .7rem;
+}
+
+.back-to-top {
+    text-align: center;
+}
+
+.back-to-top a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+.back-to-top a:hover {
+    color: #ff0000;
+}
+
+#footer {
+    background-color: white;
+    color: #555;
+    padding: 4rem 2rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    border-top: 1px solid #ddd;
+}
+
+#footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.footer-section {
+    min-width: 100px;
+    margin: 1rem 0;
+}
+
+.footer-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #555;
+    cursor: pointer; /* Para indicar que se puede hacer clic */
+    transition: color 0.3s;
+}
+
+.footer-title:hover {
+    color: #000; /* Cambia de color cuando se pasa el mouse */
+}
+
+.footer-content {
+    display: none; /* Ocultamos la información inicialmente */
+    font-size: 0.7rem;
+    margin-top: 1rem;
+    color: #777;
+}
+
+.footer-content.visible {
+    display: block; /* Mostramos la información cuando tiene la clase 'visible' */
+}
+
+.toggle-input:checked ~ .footer-content {
+    display: block;
+  }
+
+  
+
+
+
+
